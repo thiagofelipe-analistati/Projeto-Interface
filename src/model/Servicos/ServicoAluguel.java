@@ -7,18 +7,18 @@ public class ServicoAluguel {
 	private Double ValorporHora;
 	private Double ValorporDia;
 	
-	private TaxaBrasil taxaBrasil;
-
+	private TaxService taxService;
+	
 	public ServicoAluguel() {
 		
 	}
 
 	
 
-	public ServicoAluguel(Double valorporHora, Double valorporDia, TaxaBrasil taxaBrasil) {
+	public ServicoAluguel(Double valorporHora, Double valorporDia, TaxService taxaBrasil) {
 		ValorporHora = valorporHora;
 		ValorporDia = valorporDia;
-		this.taxaBrasil = taxaBrasil;
+		this.taxService = taxaBrasil;
 	}
 
 	public Double getValorporHora() {
@@ -37,12 +37,12 @@ public class ServicoAluguel {
 		ValorporDia = valorporDia;
 	}
 
-	public TaxaBrasil getTaxaBrasil() {
-		return taxaBrasil;
+	public TaxService getTaxaBrasil() {
+		return taxService;
 	}
 
 	public void setTaxaBrasil(TaxaBrasil taxaBrasil) {
-		this.taxaBrasil = taxaBrasil;
+		this.taxService = taxaBrasil;
 	}
 
 	public void processarPagamento (Aluguel aluguel) {
@@ -58,7 +58,7 @@ public class ServicoAluguel {
 				valorBasico = ValorporDia * Math.ceil(horas /24);
 			}
 
-		double tax = taxaBrasil.Taxa(valorBasico);
+		double tax = taxService.tax(valorBasico);
 		aluguel.setPagamento(new Pagamento(valorBasico, tax));
 	}
 	

@@ -1,13 +1,14 @@
 package model.Servicos;
 
-public class TaxaBrasil {
+public class TaxaBrasil implements TaxService{
 
-	public double Taxa (double valor) {
-		if(valor >= 100.0) {
-			return valor * 0.15;
-		} else {
-			return valor * 0.2;
+	public double tax(double amount) {
+		if (amount <= 100.0) {
+			return amount * 0.2;
 		}
-	}
+		else {
+			return amount * 0.15;
+		}
 
-}
+	}
+}	
